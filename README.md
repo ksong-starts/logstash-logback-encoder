@@ -1,6 +1,6 @@
 > !! This document applies to the next version under development.
 >
-> &nbsp; &nbsp; See [here for documentation on the latest released version](https://github.com/logstash/logstash-logback-encoder/tree/logstash-logback-encoder-4.11).
+> &nbsp; &nbsp; See [here for documentation on the latest released version](https://github.com/logstash/logstash-logback-encoder/tree/logstash-logback-encoder-4.10).
 
 # Logback JSON encoder
 
@@ -60,7 +60,7 @@ Maven style:
 <dependency>
   <groupId>net.logstash.logback</groupId>
   <artifactId>logstash-logback-encoder</artifactId>
-  <version>4.11</version>
+  <version>4.10</version>
 </dependency>
 ```
 
@@ -74,34 +74,6 @@ If you get `ClassNotFoundException`/`NoClassDefFoundError`/`NoSuchMethodError` a
 
 Older versions than the ones specified in the pom file _might_ work, but the versions in the pom file are what testing has been performed against.
 
-If you are using logstash-logback-encoder in a project (such as spring-boot) that also declares dependencies on any of the above libraries, you might need to tell maven explicitly which versions to use to avoid conflicts.
-You can do so using maven's [dependencyManagement](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management) feature.
-For example, to ensure that maven doesn't pick different versions of logback-core, logback-classic, and logback-access, add this to your project's pom.xml
-
-```xml
-    <properties>
-        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${ch.qos.logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${ch.qos.logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-access</artifactId>
-                <version>${ch.qos.logback.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-```
 
 ## Usage
 
@@ -684,7 +656,7 @@ vary by the providers you configure.
 
 These fields will appear in every LoggingEvent unless otherwise noted.
 The field names listed here are the default field names.
-The field names can be customized (see [Customizing Standard Field Names](#customizing-standard-field-names)).
+The field names can be customized (see [Customizing Standard Field Names](#custom_field_names)).
 
 | Field         | Description
 |---------------|------------
@@ -988,7 +960,7 @@ vary by the providers you configure.
 
 These fields will appear in every AccessEvent unless otherwise noted.
 The field names listed here are the default field names.
-The field names can be customized (see [Customizing Standard Field Names](#customizing-standard-field-names)).
+The field names can be customized (see [Customizing Standard Field Names](#custom_field_names)).
 
 | Field         | Description
 |---------------|------------
@@ -1020,7 +992,7 @@ Request and response headers are not logged by default, but can be enabled by sp
 </encoder>
 ```
 
-See [Customizing Standard Field Names](#customizing-standard-field-names)) for more details.
+See [Customizing Standard Field Names](#custom_field_names)) for more details.
 
 To write the header names in lowercase (so that header names that only differ by case are treated the same),
 set `lowerCaseFieldNames` to true, like this:
